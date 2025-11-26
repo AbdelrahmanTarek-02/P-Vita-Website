@@ -1,0 +1,31 @@
+{
+  "name": "p-vita-about",
+  "version": "1.0.0",
+  "description": "P-Vita About page with advanced animations and pixel-perfect design",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf .next node_modules package-lock.json && npm install",
+    "size": "du -sh .",
+    "analyze": "ANALYZE=true next build"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "next": "^14.0.0",
+    "framer-motion": "^10.16.0",
+    "tailwindcss": "^3.3.0",
+    "postcss": "^8.4.0",
+    "autoprefixer": "^10.4.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@types/node": "^20.0.0"
+  }
+}

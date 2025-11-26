@@ -1,0 +1,111 @@
+{
+  "colors": {
+    "primary": "#000000",
+    "secondary": "#198f51",
+    "accent": "#F0EAE5",
+    "background": "#FFFFFF",
+    "surface": "#D8D9D9",
+    "border": "#D8D9D9",
+    "text": {
+      "primary": "#010202",
+      "secondary": "#333333",
+      "tertiary": "#666666",
+      "inverse": "#FFFFFF"
+    },
+    "darkGray": "#5A5A5A",
+    "darkGreen": "#13251A",
+    "beige": "#F0EAE5",
+    "lightGray": "#D8D9D9",
+    "success": "#10b981",
+    "warning": "#f59e0b",
+    "error": "#ef4444",
+    "semantics": {
+      "hover": "#F5F5F5",
+      "active": "#E9E9E9",
+      "focus": "#0F352B",
+      "disabled": "#D1D1D1"
+    }
+  },
+  "spacing": {
+    "xs": "4px",
+    "sm": "8px",
+    "md": "16px",
+    "lg": "24px",
+    "xl": "32px",
+    "2xl": "48px",
+    "3xl": "64px",
+    "4xl": "96px",
+    "5xl": "128px"
+  },
+  "typography": {
+    "fontFamily": {
+      "sans": "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+      "mono": "'SF Mono', Monaco, 'Cascadia Code', 'Courier New', monospace"
+    },
+    "fontSize": {
+      "xs": "12px",
+      "sm": "14px",
+      "base": "16px",
+      "lg": "18px",
+      "xl": "20px",
+      "2xl": "24px",
+      "3xl": "32px",
+      "4xl": "40px",
+      "5xl": "56px",
+      "6xl": "72px"
+    },
+    "lineHeight": {
+      "tight": 1.2,
+      "normal": 1.5,
+      "relaxed": 1.75,
+      "loose": 2
+    },
+    "fontWeight": {
+      "light": 300,
+      "normal": 400,
+      "medium": 500,
+      "semibold": 600,
+      "bold": 700
+    }
+  },
+  "radii": {
+    "none": "0",
+    "xs": "2px",
+    "sm": "4px",
+    "md": "8px",
+    "lg": "12px",
+    "xl": "16px",
+    "2xl": "24px",
+    "3xl": "32px",
+    "full": "9999px"
+  },
+  "shadows": {
+    "xs": "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+    "sm": "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
+    "md": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+    "lg": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+    "xl": "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+    "2xl": "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+  },
+  "durations": {
+    "micro": "80ms",
+    "short": "120ms",
+    "medium": "280ms",
+    "long": "420ms",
+    "extraLong": "680ms"
+  },
+  "easing": {
+    "easeOut": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "easeInOut": "cubic-bezier(0.4, 0, 0.2, 1)",
+    "easeIn": "cubic-bezier(0.4, 0, 1, 1)",
+    "spring": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+  },
+  "breakpoints": {
+    "xs": "320px",
+    "sm": "640px",
+    "md": "768px",
+    "lg": "1024px",
+    "xl": "1280px",
+    "2xl": "1536px"
+  }
+}

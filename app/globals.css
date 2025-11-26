@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design system CSS variables */
+:root {
+  --color-primary: #1a1a1a;
+  --color-secondary: #6366f1;
+  --color-accent: #ec4899;
+  --color-background: #ffffff;
+  --color-surface: #f9fafb;
+  --color-border: #e5e7eb;
+  --color-text-primary: #111827;
+  --color-text-secondary: #6b7280;
+  --color-text-tertiary: #9ca3af;
+  --color-text-inverse: #ffffff;
+
+  --duration-micro: 80ms;
+  --duration-short: 120ms;
+  --duration-medium: 280ms;
+  --duration-long: 420ms;
+  --duration-extra-long: 680ms;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+}
+
+* {
+  @apply box-border;
+}
+
+html {
+  scroll-behavior: smooth;
+  @apply antialiased;
+}
+
+/* Smooth page transitions */
+body {
+  @apply transition-colors duration-medium;
+}
+
+/* Focus management for accessibility */
+:focus-visible {
+  @apply outline-2 outline-offset-2 outline-secondary;
+}
+
+button:focus-visible {
+  @apply outline-2 outline-offset-2 outline-secondary;
+}
+
+a:focus-visible {
+  @apply outline-2 outline-offset-2 outline-secondary;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Image optimization */
+img {
+  @apply max-w-full h-auto;
+}
+
+/* Typography scale */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-semibold leading-tight;
+}
+
+h1 {
+  @apply text-5xl md:text-6xl;
+}
+
+h2 {
+  @apply text-4xl md:text-5xl;
+}
+
+h3 {
+  @apply text-3xl md:text-4xl;
+}
+
+h4 {
+  @apply text-2xl md:text-3xl;
+}
+
+p {
+  @apply text-base leading-normal text-text-secondary;
+}
+
+/* Button base styles */
+button {
+  @apply transition-all duration-short;
+}
+
+button:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* Link underline for accessibility */
+a {
+  @apply transition-colors duration-short;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  @apply w-2 h-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-surface;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
+}
+
+/* Touch-friendly targets */
+button,
+a[role='button'],
+[role='menuitem'] {
+  @apply min-h-[44px] min-w-[44px];
+}
