@@ -3,10 +3,11 @@
 import { useEffect, useRef, useState } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { ScrollToPlugin } from "gsap/ScrollToPlugin"
 import { ChevronRight } from "lucide-react"
+import Link from "next/link";
 
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
+
+gsap.registerPlugin(ScrollTrigger)
 
 const COLORS = {
   darkGreen: "#1b3524",
@@ -62,20 +63,6 @@ export function PVitaScrollSection() {
   const [isMobile, setIsMobile] = useState(false)
   const [activeStep, setActiveStep] = useState(1)
 
-  // Handle step click for navigation
-  const handleStepClick = (stepId: number) => {
-    const scrollTrigger = ScrollTrigger.getAll().find(
-      (trigger: any) => trigger.vars.trigger === sectionRef.current
-    )
-    
-    if (scrollTrigger) {
-      // Calculate scroll position based on step
-      const progress = (stepId - 1) * 0.25 + 0.125 // Center each step in its quarter
-      const scrollTo = scrollTrigger.start + (scrollTrigger.end - scrollTrigger.start) * progress
-      gsap.to(window, { scrollTo, duration: 0.8, overwrite: "auto" })
-    }
-  }
-
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 1024)
     checkMobile()
@@ -125,9 +112,10 @@ export function PVitaScrollSection() {
           scrollTrigger: {
             trigger: section,
             start: "top top",
-            end: "+=600%",
+            end: "+=800%", // 8x viewport height = full animation duration
             pin: true,
-            scrub: 2,
+            pinSpacing: true, // Add height for pin so page doesn't jump
+            scrub: 1.2, // Smooth scrubbing
             anticipatePin: 1,
             onUpdate: (self: any) => {
               const progress = self.progress
@@ -144,37 +132,55 @@ export function PVitaScrollSection() {
           .to(pondRef.current, { scale: 1, opacity: 1, duration: 0.6, ease: "power2.out" }, 0.2)
           .to(
             algaeGroupRef.current.filter(Boolean),
-            { scale: 1, y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: "back.out(1.7)" },
-            0.5,
+            { scale: 1, y: 0, opacity: 1, duration: 0.4, stagger: 0.1, ease: "back.out(1.7)" },
+            0.4,
           )
-          .to(harvesterRef.current, { x: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, 1.0)
-          .to(bucketRef.current, { scale: 1, opacity: 1, duration: 0.5, ease: "elastic.out(1, 0.5)" }, 1.3)
-          .to(scene1Ref.current, { opacity: 0, scale: 0.8, duration: 0.4 }, 1.8)
+          .to(harvesterRef.current, { x: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 0.8)
+          .to(bucketRef.current, { scale: 1, opacity: 1, duration: 0.4, ease: "elastic.out(1, 0.5)" }, 1.0)
+          .to(
+            algaeGroupRef.current.filter(Boolean),
+            { y: "random(-10, 10)", x: "random(-5, 5)", duration: 0.4, stagger: 0.05 },
+            1.2,
+          )
+          .to(scene1Ref.current, { opacity: 0, scale: 0.8, duration: 0.3 }, 1.6)
 
           // === SCENE 2: Process ===
-          .to(scene2Ref.current, { opacity: 1, scale: 1, duration: 0.5 }, 2.0)
-          .to(machineRef.current, { y: 0, opacity: 1, duration: 0.6, ease: "bounce.out" }, 2.2)
-          .to(gearRefs.current.filter(Boolean), { scale: 1, duration: 0.5, stagger: 0.15, ease: "back.out(1.7)" }, 2.5)
-          .to(inputAlgaeRef.current, { y: 80, opacity: 1, duration: 0.7, ease: "power2.in" }, 2.8)
-          .to(inputAlgaeRef.current, { scale: 0, duration: 0.4 }, 3.5)
-          .to(scene2Ref.current, { opacity: 0, scale: 0.8, duration: 0.4 }, 3.9)
+          .to(scene2Ref.current, { opacity: 1, scale: 1, duration: 0.5 }, 1.8)
+          .to(machineRef.current, { y: 0, opacity: 1, duration: 0.6, ease: "bounce.out" }, 2.0)
+          .to(gearRefs.current.filter(Boolean), { scale: 1, duration: 0.4, stagger: 0.1, ease: "back.out(1.7)" }, 2.2)
+          .to(gearRefs.current[0], { rotation: 360, duration: 1.2, ease: "none" }, 2.4)
+          .to(gearRefs.current[1], { rotation: -360, duration: 1.2, ease: "none" }, 2.4)
+          .to(inputAlgaeRef.current, { y: 80, opacity: 1, duration: 0.6, ease: "power2.in" }, 2.6)
+          .to(inputAlgaeRef.current, { scale: 0, duration: 0.3 }, 3.0)
+          .to(
+            outputParticlesRef.current?.children || [],
+            { scale: 1, y: "random(30, 80)", x: "random(-60, 60)", opacity: 1, duration: 0.6, stagger: 0.03 },
+            3.2,
+          )
+          .to(scene2Ref.current, { opacity: 0, scale: 0.8, duration: 0.3 }, 3.8)
 
           // === SCENE 3: Synthesize ===
-          .to(scene3Ref.current, { opacity: 1, scale: 1, duration: 0.5 }, 4.1)
-          .to(labContainerRef.current, { scale: 1, opacity: 1, duration: 0.6, ease: "power2.out" }, 4.3)
-          .to(testTubesRef.current.filter(Boolean), { scaleY: 1, duration: 0.6, stagger: 0.15, ease: "power2.out" }, 4.6)
-          .to(reactionRef.current, { scale: 1, opacity: 1, duration: 0.6, ease: "elastic.out(1, 0.5)" }, 5.0)
-          .to(scene3Ref.current, { opacity: 0, scale: 0.8, duration: 0.4 }, 5.6)
+          .to(scene3Ref.current, { opacity: 1, scale: 1, duration: 0.5 }, 4.0)
+          .to(labContainerRef.current, { scale: 1, opacity: 1, duration: 0.6, ease: "power2.out" }, 4.2)
+          .to(testTubesRef.current.filter(Boolean), { scaleY: 1, duration: 0.5, stagger: 0.1, ease: "power2.out" }, 4.4)
+          .to(reactionRef.current, { scale: 1, opacity: 1, duration: 0.5, ease: "elastic.out(1, 0.5)" }, 4.8)
+          .to(labContainerRef.current, { x: 3, duration: 0.05, repeat: 15, yoyo: true }, 5.0)
+          .to(
+            moleculesRef.current?.children || [],
+            { scale: 1, opacity: 1, y: "random(-40, -80)", x: "random(-30, 30)", duration: 0.6, stagger: 0.06 },
+            5.2,
+          )
+          .to(scene3Ref.current, { opacity: 0, scale: 0.8, duration: 0.3 }, 5.8)
 
           // === SCENE 4: Deliver ===
-          .to(scene4Ref.current, { opacity: 1, scale: 1, duration: 0.5 }, 5.8)
-          .to(sunRef.current, { scale: 1, opacity: 1, y: 0, duration: 0.7, ease: "elastic.out(1, 0.5)" }, 6.0)
-          .to(bagRef.current, { scale: 1, rotation: 0, opacity: 1, duration: 0.7, ease: "elastic.out(1, 0.6)" }, 6.3)
-          .to(plantGrowRef.current, { scaleY: 1, duration: 0.8, ease: "elastic.out(1, 0.5)" }, 6.6)
+          .to(scene4Ref.current, { opacity: 1, scale: 1, duration: 0.5 }, 6.0)
+          .to(sunRef.current, { scale: 1, opacity: 1, y: 0, duration: 0.6, ease: "elastic.out(1, 0.5)" }, 6.2)
+          .to(bagRef.current, { scale: 1, rotation: 0, opacity: 1, duration: 0.6, ease: "elastic.out(1, 0.6)" }, 6.4)
+          .to(plantGrowRef.current, { scaleY: 1, duration: 0.7, ease: "elastic.out(1, 0.5)" }, 6.6)
           .to(
             leavesRef.current.filter(Boolean),
-            { scale: 1, rotation: 0, duration: 0.6, stagger: 0.15, ease: "back.out(2)" },
-            7.0,
+            { scale: 1, rotation: 0, duration: 0.5, stagger: 0.1, ease: "back.out(2)" },
+            6.8,
           )
       }, section)
     } else {
@@ -210,12 +216,10 @@ export function PVitaScrollSection() {
     <section
       ref={sectionRef}
       className="relative w-full overflow-hidden"
-      suppressHydrationWarning
       style={{
-        backgroundImage: `url("/images/Background (PVitaScrollSection).png")`,
+        backgroundImage: `url("/images/what-20is-20p-vita-20-281-29.png")`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundAttachment: "fixed",
         minHeight: isMobile ? "auto" : "100vh",
       }}
     >
@@ -225,19 +229,21 @@ export function PVitaScrollSection() {
         {/* LEFT SIDE: Text Content */}
         <div className="order-1 flex w-full flex-col justify-center lg:w-2/5">
           <h2
-            className="mb-6 font-bold leading-tight text-4xl md:text-5xl lg:text-6xl"
+            className="mb-6 font-serif text-4xl font-bold italic leading-tight md:text-5xl lg:text-6xl"
             style={{ color: COLORS.darkGreen }}
           >
             What P-Vita does?
           </h2>
 
-          <p className="mb-8 text-base leading-relaxed md:text-lg" style={{ color: COLORS.darkGreen, textAlign: "justify" }}>
+          <p className="mb-8 text-base leading-relaxed text-gray-700 md:text-lg" style={{ textAlign: "justify" }}>
             P-Vita is an innovative biotech startup transforming agricultural waste and algae into sustainable,
             high-value bio-based products. By applying circular economy principles, the company delivers natural
             solutions that minimize environmental impact across the food, beauty, and pharmaceutical industries.
           </p>
 
-          <button
+
+          <Link
+            href="/about"
             className="group flex w-fit items-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 hover:gap-3"
             style={{
               backgroundColor: COLORS.cream,
@@ -246,15 +252,29 @@ export function PVitaScrollSection() {
               boxShadow: `0 4px 15px ${COLORS.darkGreen}15`,
             }}
           >
-            Explore More
-            <span
-              className="flex h-7 w-7 items-center justify-center rounded-full transition-colors"
-              style={{ backgroundColor: COLORS.midGreen }}
+            <button
+              className="flex items-center gap-2"
+              style={{
+                background: "transparent",
+                border: "none",
+                padding: 0,
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+              }}
             >
-              <ChevronRight className="h-4 w-4 text-white" />
-              <ChevronRight className="-ml-2 h-4 w-4 text-white" />
-            </span>
-          </button>
+              Explore More
+              <span
+                className="flex h-7 w-7 items-center justify-center rounded-full transition-colors"
+                style={{ backgroundColor: COLORS.midGreen }}
+              >
+                <ChevronRight className="h-4 w-4 text-white" />
+                <ChevronRight className="-ml-2 h-4 w-4 text-white" />
+              </span>
+            </button>
+          </Link>
+
+
 
           {/* Step Indicators */}
           <div className="mt-12 flex items-center gap-3">
@@ -264,9 +284,8 @@ export function PVitaScrollSection() {
                 className="flex flex-col items-center"
                 style={{ opacity: activeStep === step.id ? 1 : 0.4, transition: "opacity 0.3s" }}
               >
-                <button
-                  onClick={() => handleStepClick(step.id)}
-                  className="flex h-10 w-10 items-center justify-center rounded-full text-sm font-semibold transition-all duration-300 hover:scale-110 cursor-pointer"
+                <div
+                  className="flex h-10 w-10 items-center justify-center rounded-full text-sm font-semibold transition-all duration-300"
                   style={{
                     backgroundColor: activeStep === step.id ? COLORS.darkGreen : COLORS.cream,
                     color: activeStep === step.id ? COLORS.white : COLORS.darkGreen,
@@ -274,7 +293,7 @@ export function PVitaScrollSection() {
                   }}
                 >
                   {step.id}
-                </button>
+                </div>
                 <span className="mt-1 text-xs font-medium" style={{ color: COLORS.darkGreen }}>
                   {step.title}
                 </span>
@@ -689,8 +708,6 @@ export function PVitaScrollSection() {
                     <text x="50" y="88" textAnchor="middle" fill={COLORS.cream} fontSize="8">
                       ORGANIC
                     </text>
-                    {/* Leaf icon */}
-                    <ellipse cx="50" cy="68" rx="8" ry="4" fill={COLORS.lightGreen} transform="rotate(-30 50 68)" />
                   </svg>
                 </div>
 
