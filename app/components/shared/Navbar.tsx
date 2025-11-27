@@ -59,6 +59,7 @@ export default function Navbar({ className = '' }: NavbarProps) {
           : '0 0px 0px 0 rgba(0, 0, 0, 0)',
       }}
       transition={{ duration: 0.2 }}
+      suppressHydrationWarning
       className={`fixed top-0 left-0 right-0 z-50 ${className}`}
     >
       <nav className="max-w-7xl mx-auto px-6 md:px-12 py-4 flex items-center justify-between">
