@@ -1,0 +1,5 @@
+[33mb56ce7c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m changes
+[33mbad620a[m Add new sections: Product Line & Our Partners Preview with premium design and animations
+[33m2685eaf[m Fix: Add suppressHydrationWarning to Navbar to eliminate browser extension attribute mismatch warnings
+[33mdf25e07[m docs: add final deployment summary and simplified guide
+[33mb834c7c[m docs: add deployment guides and scripts
