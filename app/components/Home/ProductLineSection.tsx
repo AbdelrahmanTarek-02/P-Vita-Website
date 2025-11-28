@@ -13,56 +13,17 @@ const COLORS = {
 
 export function ProductLineSection() {
   return (
-    <section className="relative w-full overflow-hidden" style={{ backgroundColor: COLORS.darkGreen }}>
-      
-      {/* ----------------- WHITE ORGANIC SHAPE (MOVED RIGHT) ----------------- */}
-      <svg
-        className="absolute top-0 left-[20%] h-full w-[120%] pointer-events-none"
-        preserveAspectRatio="none"
-        viewBox="0 0 1600 900"
-      >
-        <defs>
-          <filter id="soft-blur" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="1.2" />
-          </filter>
-        </defs>
-
-        {/* Main blurred layer (soft curved) */}
-        <path
-          d="
-            M 1600 0
-            L 1600 900
-            L 960 900
-            C 760 880, 580 800, 480 700
-            C 360 580, 340 420, 380 300
-            C 420 180, 520 100, 660 60
-            C 820 20, 1020 0, 1280 0
-            Z
-          "
-          fill={COLORS.white}
-          opacity="0.12"
-          filter="url(#soft-blur)"
-        />
-
-        {/* Deeper layer for depth */}
-        <path
-          d="
-            M 1600 0
-            L 1600 850
-            C 1520 880, 1360 900, 1180 900
-            L 980 880
-            C 720 840, 520 760, 430 600
-            C 340 440, 380 280, 520 150
-            C 700 0, 1100 0, 1400 0
-            Z
-          "
-          fill={COLORS.white}
-          opacity="0.09"
-          filter="url(#soft-blur)"
-        />
-      </svg>
-
-      {/* ----------------- MAIN CONTENT ----------------- */}
+    <section
+      className="relative w-full overflow-hidden"
+      style={{
+        backgroundImage: `url("/images/Background (ProductSection).svg")`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundColor: COLORS.darkGreen,
+      }}
+    >
+      {/* MAIN CONTENT */}
       <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8 py-24 lg:py-32">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
           

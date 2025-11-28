@@ -17,7 +17,7 @@ export default function Footer() {
     <footer className="bg-[#13251A] text-white">
       <div className="max-w-[1600px] mx-auto px-6 md:px-10 py-12 md:py-16 w-full">
         {/* grid directly on background — no inner rounded panel */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-12">
+        <div className="grid-responsive-footer">
           {/* Brand */}
           <div className="col-span-1">
             <Link href="/" className="inline-block mb-3 text-2xl md:text-2xl font-extrabold tracking-tight text-white">P-Vita</Link>
@@ -27,11 +27,11 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-4 text-sm uppercase tracking-wide text-white/90">Pages</h3>
             <ul className="space-y-3">
-              <li><Link href="/home" className="text-white/70 hover:text-white text-sm underline underline-offset-2 decoration-white/10">Home</Link></li>
-              <li><Link href="/about" className="text-white/70 hover:text-white text-sm underline underline-offset-2 decoration-white/10">About</Link></li>
-              <li><Link href="/solutions" className="text-white/70 hover:text-white text-sm underline underline-offset-2 decoration-white/10">Our Solutions</Link></li>
-              <li><Link href="/grow" className="text-white/70 hover:text-white text-sm underline underline-offset-2 decoration-white/10">Grow With Us</Link></li>
-              <li><Link href="/impact" className="text-white/70 hover:text-white text-sm underline underline-offset-2 decoration-white/10">Impact</Link></li>
+              <li><Link href="/home" className="link-footer">Home</Link></li>
+              <li><Link href="/about" className="link-footer">About</Link></li>
+              <li><Link href="/solutions" className="link-footer">Our Solutions</Link></li>
+              <li><Link href="/grow" className="link-footer">Grow With Us</Link></li>
+              <li><Link href="/impact" className="link-footer">Impact</Link></li>
             </ul>
           </div>
 
@@ -39,11 +39,11 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-4 text-sm uppercase tracking-wide text-white/90">Solutions</h3>
             <ul className="space-y-3">
-              <li><Link href="/solutions#products" className="text-white/70 hover:text-white text-sm underline underline-offset-2 decoration-white/10">Products</Link></li>
-              <li><Link href="/solutions#services" className="text-white/70 hover:text-white text-sm underline underline-offset-2 decoration-white/10">Services</Link></li>
-              <li><Link href="/solutions#technology" className="text-white/70 hover:text-white text-sm underline underline-offset-2 decoration-white/10">Technology</Link></li>
-              <li><Link href="/solutions#licensing" className="text-white/70 hover:text-white text-sm underline underline-offset-2 decoration-white/10">Licensing</Link></li>
-              <li><Link href="/solutions#connect" className="text-white/70 hover:text-white text-sm underline underline-offset-2 decoration-white/10">Connect</Link></li>
+              <li><Link href="/solutions#products" className="link-footer">Products</Link></li>
+              <li><Link href="/solutions#services" className="link-footer">Services</Link></li>
+              <li><Link href="/solutions#technology" className="link-footer">Technology</Link></li>
+              <li><Link href="/solutions#licensing" className="link-footer">Licensing</Link></li>
+              <li><Link href="/solutions#connect" className="link-footer">Connect</Link></li>
             </ul>
           </div>
 
@@ -51,11 +51,11 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-4 text-sm uppercase tracking-wide text-white/90">Contact</h3>
             <ul className="space-y-3">
-              <li><a href="#partnerships" className="text-white/70 hover:text-white text-sm underline underline-offset-2 decoration-white/10">Partnerships</a></li>
-              <li><a href="#investors" className="text-white/70 hover:text-white text-sm underline underline-offset-2 decoration-white/10">Investors</a></li>
-              <li><a href="#community" className="text-white/70 hover:text-white text-sm underline underline-offset-2 decoration-white/10">Community</a></li>
-              <li><a href="#events" className="text-white/70 hover:text-white text-sm underline underline-offset-2 decoration-white/10">Events</a></li>
-              <li><a href="#newsletter" className="text-white/70 hover:text-white text-sm underline underline-offset-2 decoration-white/10">Newsletter</a></li>
+              <li><a href="#partnerships" className="link-footer">Partnerships</a></li>
+              <li><a href="#investors" className="link-footer">Investors</a></li>
+              <li><a href="#community" className="link-footer">Community</a></li>
+              <li><a href="#events" className="link-footer">Events</a></li>
+              <li><a href="#newsletter" className="link-footer">Newsletter</a></li>
             </ul>
           </div>
 

@@ -1,5 +1,7 @@
 'use client';
 
+import React from 'react';
+import Image from 'next/image';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 
@@ -92,7 +94,7 @@ const teamMembers: TeamMember[] = [
   },
 ];
 
-export default function TeamSection() {
+function TeamSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: false, margin: '-100px' });
 
@@ -177,9 +179,11 @@ export default function TeamSection() {
                       transition={{ duration: 0.3 }}
                       className="mb-6 w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden shadow-2xl border-4 border-accent"
                     >
-                      <img
+                      <Image
                         src={member.image}
                         alt={member.name}
+                        width={160}
+                        height={160}
                         className="w-full h-full object-cover"
                       />
                     </motion.div>
@@ -250,9 +254,11 @@ export default function TeamSection() {
                       transition={{ duration: 0.3 }}
                       className="mb-4 w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden shadow-lg"
                     >
-                      <img
+                      <Image
                         src={member.image}
                         alt={member.name}
+                        width={128}
+                        height={128}
                         className="w-full h-full object-cover"
                       />
                     </motion.div>
@@ -326,3 +332,5 @@ export default function TeamSection() {
     </section>
   );
 }
+
+export default React.memo(TeamSection);

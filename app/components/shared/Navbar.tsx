@@ -1,23 +1,31 @@
 'use client';
 
+import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 interface NavbarProps {
   className?: string;
 }
 
-export default function Navbar({ className = '' }: NavbarProps) {
+const Navbar = React.memo(function Navbar({ className = '' }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    let rafId: number | null = null;
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      if (rafId === null) {
+        rafId = requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 10);
+          rafId = null;
+        });
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -74,9 +82,11 @@ export default function Navbar({ className = '' }: NavbarProps) {
             className="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#198f51] rounded"
             aria-label="P-Vita Home"
           >
-            <img
+            <Image
               src="/logos/P-Vita-Logo.png"
               alt="P-Vita Logo"
+              width={56}
+              height={56}
               className="h-12 md:h-14 w-auto object-contain hover:opacity-80 transition-opacity duration-short"
             />
           </Link>
@@ -93,7 +103,7 @@ export default function Navbar({ className = '' }: NavbarProps) {
             <motion.div key={item.href} variants={itemVariants}>
               <Link
                 href={item.href}
-                className="text-[#010202] hover:text-[#198f51] transition-colors duration-short font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#198f51] rounded px-2 py-2"
+                className="link-nav font-medium"
               >
                 {item.label}
               </Link>
@@ -109,7 +119,7 @@ export default function Navbar({ className = '' }: NavbarProps) {
             transition={{ duration: 0.28, delay: 0.2 }}
             whileHover={{ scale: 1.05, translateY: -2 }}
             whileTap={{ scale: 0.95 }}
-            className="px-6 py-2 bg-[#198f51] text-white rounded-lg font-semibold transition-all duration-short hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#198f51]"
+            className="btn-primary"
             aria-label="Contact Us"
           >
             Contact Us
@@ -122,7 +132,7 @@ export default function Navbar({ className = '' }: NavbarProps) {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.28, delay: 0.2 }}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden p-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary rounded"
+          className="focus-outline-secondary md:hidden p-md"
           aria-label="Toggle navigation menu"
           aria-expanded={isMobileMenuOpen}
         >
@@ -162,14 +172,14 @@ export default function Navbar({ className = '' }: NavbarProps) {
             <Link
               key={item.href}
               href={item.href}
-              className="text-text-secondary hover:text-text-primary transition-colors duration-short font-medium py-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary rounded px-sm"
+              className="text-text-secondary hover:text-text-primary transition-colors duration-short font-medium py-sm rounded px-sm"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {item.label}
             </Link>
           ))}
           <Link href="/contact" className="w-full">
-            <button className="w-full px-lg py-md bg-secondary text-text-inverse rounded-lg font-semibold transition-all duration-short hover:shadow-lg mt-md">
+            <button className="btn-submit">
               Get Started
             </button>
           </Link>
@@ -177,4 +187,6 @@ export default function Navbar({ className = '' }: NavbarProps) {
       </motion.div>
     </motion.header>
   );
-}
+});
+
+export default Navbar;

@@ -38,7 +38,7 @@ const timeline: TimelineEvent[] = [
 // Source: About Us Page Content.docx
 export default function TimelineSection() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { once: false, margin: '-100px' });
+  const isInView = useInView(containerRef, { once: true, margin: '-100px' });
 
   const itemVariants = {
     hidden: { opacity: 0, x: -24 },

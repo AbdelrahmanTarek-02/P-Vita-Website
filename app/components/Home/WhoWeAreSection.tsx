@@ -217,8 +217,9 @@ export function PVitaScrollSection() {
       ref={sectionRef}
       className="relative w-full overflow-hidden"
       style={{
-        backgroundImage: `url("/images/what-20is-20p-vita-20-281-29.png")`,
+        backgroundImage: `url("/images/Background (PVitaScrollSection).WebP")`,
         backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         minHeight: isMobile ? "auto" : "100vh",
       }}

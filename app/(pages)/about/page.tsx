@@ -1,13 +1,30 @@
+import dynamic from 'next/dynamic';
 import ClientLayout from '@/app/components/shared/ClientLayout';
 import HeroSection from '@/app/components/about/HeroSection';
 import WhoWeAreSection from '@/app/components/about/WhoWeAreSection';
-import VisionSection from '@/app/components/about/VisionSection';
-import MissionAndImpactSection from '@/app/components/about/MissionAndImpactSection';
-import TimelineSection from '@/app/components/about/TimelineSection';
-import TeamSection from '@/app/components/about/TeamSection';
-import TrustedSection from '@/app/components/about/TrustedSection';
-import FeaturedSection from '@/app/components/about/FeaturedSection';
-import CTASection from '@/app/components/about/CTASection';
+
+// Lazy load sections below the fold to reduce initial bundle
+const VisionSection = dynamic(() => import('@/app/components/about/VisionSection'), {
+  loading: () => <div className="h-96 bg-gradient-to-b from-transparent to-gray-100" />
+});
+const MissionAndImpactSection = dynamic(() => import('@/app/components/about/MissionAndImpactSection'), {
+  loading: () => <div className="h-96 bg-gradient-to-b from-transparent to-gray-100" />
+});
+const TimelineSection = dynamic(() => import('@/app/components/about/TimelineSection'), {
+  loading: () => <div className="h-96 bg-gradient-to-b from-transparent to-gray-100" />
+});
+const TeamSection = dynamic(() => import('@/app/components/about/TeamSection'), {
+  loading: () => <div className="h-96 bg-gradient-to-b from-transparent to-gray-100" />
+});
+const TrustedSection = dynamic(() => import('@/app/components/about/TrustedSection'), {
+  loading: () => <div className="h-96 bg-gradient-to-b from-transparent to-gray-100" />
+});
+const FeaturedSection = dynamic(() => import('@/app/components/about/FeaturedSection'), {
+  loading: () => <div className="h-96 bg-gradient-to-b from-transparent to-gray-100" />
+});
+const CTASection = dynamic(() => import('@/app/components/about/CTASection'), {
+  loading: () => <div className="h-96 bg-gradient-to-b from-transparent to-gray-100" />
+});
 
 export default function AboutPage() {
   return (
