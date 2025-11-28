@@ -217,7 +217,7 @@ export function PVitaScrollSection() {
       ref={sectionRef}
       className="relative w-full overflow-hidden"
       style={{
-        backgroundImage: `url("/images/Background (PVitaScrollSection).WebP")`,
+        backgroundImage: `url("/images/Background (PVitaScrollSection).svg")`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
